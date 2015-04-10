@@ -16,7 +16,7 @@ using namespace std;
 // Input: A pair of non-negative integers n >= k >= 0
 // Output: The value of C(n, k)
 //
-int binomial1(int n, int k)
+int binomial(int n, int k)
 {
    int* T = new int[n + 1];
    int u;

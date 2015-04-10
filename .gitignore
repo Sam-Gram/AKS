@@ -7,6 +7,9 @@
 #Emacs things
 *~
 
+#The Compiled Object
+AKS
+
 # Precompiled Headers
 *.gch
 *.pch

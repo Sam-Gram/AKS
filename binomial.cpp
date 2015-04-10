@@ -26,13 +26,7 @@ unsigned long long mpz_get_ull(mpz_t n)
    return (((unsigned long long)hi) << 32) + lo;
 }
 
-bool AKSTest(mpz_t pVal)
-{
-   
-  return false;
-}
-
-int SendVal (mpz_t topNum, mpz_t bottomNum)
+void binomial(mpz_t rop, mpz_t topNum, mpz_t bottomNum)
 {
    mpz_t *q = new mpz_t[bottomNum + 1];
    mpz_t u;
@@ -52,7 +46,6 @@ int SendVal (mpz_t topNum, mpz_t bottomNum)
          q[j] += q[j-1];
       }
    }
-   mpz_t retVal = q[bottomNum];
+   rop = q[bottomNum];
    delete [] q;
-   return mpz_get_ull(retVal);
 }

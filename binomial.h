@@ -4,6 +4,6 @@
 #ifndef BINOMIAL_H
 #define BINOMIAL_H
 
-int binomial(int, int);
+void binomial(mpz_t, mpz_t, unsigned long);
 
 #endif

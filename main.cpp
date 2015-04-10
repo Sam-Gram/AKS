@@ -9,7 +9,8 @@
  * 04/09/2015
  ************************************************************/
 #include <iostream>
-#include <gmp>
+#include <gmp.h>
+#include "aks.h"
 
 using namespace std;
 

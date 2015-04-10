@@ -1,45 +1,58 @@
-/*******************************************************
- * Binomial Coefficient algorithm, based off of 
- * 
- * Rick Neff's original code <neffr@byui.edu>
- * 
- * For AKS Primality Test 
- * By Sam Graham and Tyson Graham
- *******************************************************/
+/****************************************************************
+ * AKS Prime Finder
+ *
+ * By Sam Graham and Tyson Graham (Possibly related)
+ *
+ * This uses the AKS prime finding method using the gmp
+ * library
+ ****************************************************************/
 #include <gmp.h>
+#include "binomial.h"
 
-using namespace std;
-
-
-// Computes C(n, k) by the dynamic programming algorithm
-// with a one-dimensional table
-// Input: A pair of non-negative integers n >= k >= 0
-// Output: The value of C(n, k)
-//
-int binomial(int n, int k)
+unsigned long long mpz_get_ull(mpz_t n)
 {
-   int* T = new int[n + 1];
-   int u;
-   for (int i = 0; i <= n; i++)
+   unsigned int lo, hi;
+   mpz_t tmp;
+
+   mpz_init( tmp );
+   mpz_mod_2exp( tmp, n, 64 );   /* tmp = (lower 64 bits of n) */
+
+   lo = mpz_get_ui( tmp );       /* lo = tmp & 0xffffffff */
+   mpz_div_2exp( tmp, tmp, 32 ); /* tmp >>= 32 */
+   hi = mpz_get_ui( tmp );       /* hi = tmp & 0xffffffff */
+
+   mpz_clear( tmp );
+
+   return (((unsigned long long)hi) << 32) + lo;
+}
+
+bool AKSTest(mpz_t pVal)
+{
+   
+  return false;
+}
+
+int SendVal (mpz_t topNum, mpz_t bottomNum)
+{
+   mpz_t *q = new mpz_t[bottomNum + 1];
+   mpz_t u;
+   for (mpz_t i = {0 + 1}; i <= topNum; i++)
    {
-      if (i <= k) // if in triangular part
+      if (i <= bottomNum)
       {
-         T[i] = 1;  // the diagonal element
-         u = i - 1; // the rightmost element to be computed
+         q[i] = 1;
+         u = i -1;
       }
       else
       {
-         // in the rectangular part
-         u = k;
+         u = bottomNum;
       }
-      for (int j = u; j >= 1; j--)
+      for (mpz_t j = u; j >= 1; j--)
       {
-	 // overwrite the preceding row moving right to left
-         T[j] += T[j - 1];
+         q[j] += q[j-1];
       }
    }
-
-   int retVal = T[k];
-   delete [] T;
-   return retVal;
+   mpz_t retVal = q[bottomNum];
+   delete [] q;
+   return mpz_get_ull(retVal);
 }

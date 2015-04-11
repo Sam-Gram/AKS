@@ -26,7 +26,7 @@ unsigned long long mpz_get_ull(mpz_t n)
    return (((unsigned long long)hi) << 32) + lo;
 }
 
-void binomial(mpz_t rop, mpz_t topNum, mpz_t bottomNum)
+int SendVal (mpz_t half, mpz_t topNum, mpz_t bottomNum)
 {
    mpz_t *q = new mpz_t[bottomNum + 1];
    mpz_t u;
@@ -46,6 +46,7 @@ void binomial(mpz_t rop, mpz_t topNum, mpz_t bottomNum)
          q[j] += q[j-1];
       }
    }
-   rop = q[bottomNum];
+   mpz_t retVal = q[bottomNum];
    delete [] q;
+   return mpz_get_ull(retVal);
 }

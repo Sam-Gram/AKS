@@ -30,7 +30,7 @@ int SendVal (mpz_t half, mpz_t topNum, mpz_t bottomNum)
 {
    mpz_t *q = new mpz_t[bottomNum + 1];
    mpz_t u;
-   for (mpz_t i = {0 + 1}; i <= topNum; i++)
+   for (mpz_init_set_ui(i,1); i <= topNum; i++)
    {
       if (i <= bottomNum)
       {

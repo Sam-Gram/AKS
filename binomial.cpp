@@ -37,27 +37,8 @@ unsigned long long mpz_get_ull(mpz_t n)
 * int binomial function and replace it with an unsigned
 * long long so that we can get the value for larger numbers.
 *************************************************************/
-unsigned long long binomial (mpz_t half, mpz_t topNum, mpz_t bottomNum)
+void binomial (mpz_t retVal, mpz_t topNum, mpz_t bottomNum)
 {
-   mpz_t *q = new mpz_t[bottomNum + 1];
-   mpz_t u;
-   for (mpz_init_set_ui(i,1); i <= topNum; i++)
-   {
-      if (i <= bottomNum)
-      {
-         q[i] = 1;
-         u = i -1;
-      }
-      else
-      {
-         u = bottomNum;
-      }
-      for (mpz_t j = u; j >= 1; j--)
-      {
-         q[j] += q[j-1];
-      }
-   }
-   mpz_t retVal = q[bottomNum];
-   delete [] q;
-   return mpz_get_ull(retVal);
+  unsigned long long temp = mpz_get_ull(bottomNum);
+  mpz_bin_ui(retVal, topNum, temp);  
 }

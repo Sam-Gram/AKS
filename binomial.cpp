@@ -30,7 +30,14 @@ unsigned long long mpz_get_ull(mpz_t n)
    return (((unsigned long long)hi) << 32) + lo;
 }
 
-int SendVal (mpz_t half, mpz_t topNum, mpz_t bottomNum)
+/************************************************************
+* There is a binomial function for other data types. However,
+* there doesn't seem to be a binomial function for mpz_t values.
+* For this reason, we are trying to adapt Brother Neff's 
+* int binomial function and replace it with an unsigned
+* long long so that we can get the value for larger numbers.
+*************************************************************/
+unsigned long long binomial (mpz_t half, mpz_t topNum, mpz_t bottomNum)
 {
    mpz_t *q = new mpz_t[bottomNum + 1];
    mpz_t u;

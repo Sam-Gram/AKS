@@ -8,7 +8,11 @@
  ****************************************************************/
 #include <gmp.h>
 #include "binomial.h"
-
+/***************************************************************
+* This function casts an mpz_t to an unsigned long long. We will
+* possibly need this function in order to return the mpz_t value
+* as we don't know how to pass the value of the mpz_t function.
+***************************************************************/
 unsigned long long mpz_get_ull(mpz_t n)
 {
    unsigned int lo, hi;

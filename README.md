@@ -1,2 +1,2 @@
 # AKS
-This is an implementation of the AKS prime solver
+This is a poor implementation of the AKS prime solver
